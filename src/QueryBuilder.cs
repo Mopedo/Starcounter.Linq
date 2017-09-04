@@ -25,6 +25,7 @@ namespace Starcounter.Linq
 
         private StringBuilder Select { get; } = new StringBuilder();
         private StringBuilder Where { get; } = new StringBuilder();
+        private StringBuilder GroupBy { get; } = new StringBuilder();
         private StringBuilder OrderBy { get; } = new StringBuilder();
 
         private List<object> Variables { get; } = new List<object>();
@@ -53,6 +54,8 @@ namespace Starcounter.Linq
         }
 
         public void WriteWhere(string text) => Where.Append(text);
+
+        public void WriteGroupBy(string text) => GroupBy.Append(text);
 
         public void WriteOrderBy(string text) => OrderBy.Append(text);
 
@@ -89,6 +92,12 @@ namespace Starcounter.Linq
             {
                 stringBuilder.Append(" WHERE ");
                 stringBuilder.Append(Where);
+            }
+
+            if (GroupBy.Length > 0)
+            {
+                stringBuilder.Append(" GROUP BY ");
+                stringBuilder.Append(GroupBy);
             }
 
             if (OrderBy.Length > 0)

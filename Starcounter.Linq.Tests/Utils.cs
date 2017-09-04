@@ -8,6 +8,7 @@ namespace Starcounter.Linq.Tests
     public static class Utils
     {
         public static string Sql<T>(Expression<Func<IQueryable<T>>> exp) => new CompiledQuery<T>(exp).SqlStatement;
+        public static string Sql<T, TResult>(Expression<Func<IQueryable<IGrouping<TResult, T>>>> exp) => new CompiledQuery<T>(exp).SqlStatement;
 
         public static string Sql<T>(Expression<Func<T>> exp) => new CompiledQuery<T>(exp).SqlStatement;
 

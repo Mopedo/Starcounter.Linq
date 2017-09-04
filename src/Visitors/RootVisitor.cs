@@ -53,6 +53,13 @@ namespace Starcounter.Linq.Visitors
                 state.Offset(value);
                 Visit(node.Arguments[0], state);
             }
+            else if (method == KnownMethods<TEntity>.IQueryableGroupBy)
+            {
+                var left = node.Arguments[0];
+                Visit(left, state);
+                var expression = node.Arguments[1];
+                GroupByVisitor<TEntity>.Instance.Visit(expression, state);
+            }
             else if (method.IsGenericMethod)
             {
                 var gen = method.GetGenericMethodDefinition();
@@ -137,7 +144,7 @@ namespace Starcounter.Linq.Visitors
 
         private static void VisitWhere(Expression expression, QueryBuilder<TEntity> state)
         {
-            state.BeginWhereSection(); 
+            state.BeginWhereSection();
             WhereVisitor<TEntity>.Instance.Visit(expression, state);
             state.EndWhereSection();
         }

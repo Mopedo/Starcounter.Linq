@@ -62,6 +62,7 @@
     <Compile Include="QueryContext.cs" />
     <Compile Include="QueryProvider.cs" />
     <Compile Include="Visitors\RootVisitor.cs" />
+    <Compile Include="Visitors\GroupByVisitor.cs" />
     <Compile Include="Visitors\SelectVisitor.cs" />
     <Compile Include="Visitors\StatelessVisitor.cs" />
     <Compile Include="Visitors\WhereVisitor.cs" />
