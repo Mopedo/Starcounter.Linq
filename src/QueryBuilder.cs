@@ -28,7 +28,7 @@ namespace Starcounter.Linq
         private StringBuilder GroupBy { get; } = new StringBuilder();
         private StringBuilder OrderBy { get; } = new StringBuilder();
 
-        private List<Func<object>> VariableGetters { get; } = new List<Func<object>>();
+        private List<object> Variables { get; } = new List<object>();
 
         public string FetchPart { get; private set; }
         public string OffsetPart { get; private set; }
@@ -119,10 +119,9 @@ namespace Starcounter.Linq
             return stringBuilder.ToString();
         }
 
-        public void AddVariable(object value) => VariableGetters.Add(() => value);
-        public void AddVariable(Func<object> valueGetter) => VariableGetters.Add(valueGetter);
+        public void AddVariable(object value) => Variables.Add(value);
 
-        public object[] GetVariables() => VariableGetters.Select(x => x()).ToArray();
+        public object[] GetVariables() => Variables.ToArray();
 
         public void BeginOrderBySection()
         {
