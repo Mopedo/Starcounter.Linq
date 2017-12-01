@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using Simplified.Ring6;
 using Starcounter;
+using Starcounter.Linq;
 using static Starcounter.Linq.DbLinq;
 
 namespace Demo
@@ -63,6 +65,12 @@ namespace Demo
                 }
                 sw.Stop();
                 return sw.Elapsed.ToString();
+            });
+
+            Handle.GET("/field-access", () =>
+            {
+                var data = DbLinq.Objects<WebTemplateGroup>().OrderBy(x => x.Name);
+                return data.Count().ToString();
             });
         }
     }
