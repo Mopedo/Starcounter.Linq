@@ -87,7 +87,7 @@ namespace Starcounter.Linq.Visitors
 
         private void VisitBinaryEquality(BinaryExpression node, QueryBuilder<TEntity> state, bool isEqualsSign)
         {
-            this.VisitBinaryEquality(node.Left, node.Right, state, isEqualsSign);
+            VisitBinaryEquality(node.Left, node.Right, state, isEqualsSign);
         }
 
         private void VisitBinaryEquality(Expression left, Expression right, QueryBuilder<TEntity> state, bool isEqualsSign)
@@ -128,45 +128,10 @@ namespace Starcounter.Linq.Visitors
             }
         }
 
-        public override void VisitBlock(BlockExpression node, QueryBuilder<TEntity> state)
-        {
-            base.VisitBlock(node, state);
-        }
-
-        public override void VisitConditional(ConditionalExpression node, QueryBuilder<TEntity> state)
-        {
-            base.VisitConditional(node, state);
-        }
-
         public override void VisitConstant(ConstantExpression node, QueryBuilder<TEntity> state)
         {
             state.WriteWhere("?");
             state.AddVariable(node.Value);
-        }
-
-        public override void VisitDebugInfo(DebugInfoExpression node, QueryBuilder<TEntity> state)
-        {
-            base.VisitDebugInfo(node, state);
-        }
-
-        public override void VisitDynamic(DynamicExpression node, QueryBuilder<TEntity> state)
-        {
-            base.VisitDynamic(node, state);
-        }
-
-        public override void VisitDefault(DefaultExpression node, QueryBuilder<TEntity> state)
-        {
-            base.VisitDefault(node, state);
-        }
-
-        public override void VisitInvocation(InvocationExpression node, QueryBuilder<TEntity> state)
-        {
-            base.VisitInvocation(node, state);
-        }
-
-        public override void VisitLambda(LambdaExpression node, QueryBuilder<TEntity> state)
-        {
-            base.VisitLambda(node, state);
         }
 
         public override void VisitMember(MemberExpression node, QueryBuilder<TEntity> state)
@@ -256,11 +221,6 @@ namespace Starcounter.Linq.Visitors
             }
         }
 
-        public override void VisitIndex(IndexExpression node, QueryBuilder<TEntity> state)
-        {
-            base.VisitIndex(node, state);
-        }
-
         public override void VisitMethodCall(MethodCallExpression node, QueryBuilder<TEntity> state)
         {
             ConstantExpression constNode = null;
@@ -297,7 +257,7 @@ namespace Starcounter.Linq.Visitors
             {
                 state.WriteWhere("(");
                 var items = (IEnumerable)memberExpression.RetrieveValue();
-                int i = 0;
+                var i = 0;
 
                 foreach (var item in items)
                 {
@@ -324,26 +284,6 @@ namespace Starcounter.Linq.Visitors
             }
         }
 
-        public override void VisitNewArray(NewArrayExpression node, QueryBuilder<TEntity> state)
-        {
-            base.VisitNewArray(node, state);
-        }
-
-        public override void VisitNew(NewExpression node, QueryBuilder<TEntity> state)
-        {
-            base.VisitNew(node, state);
-        }
-
-        public override void VisitParameter(ParameterExpression node, QueryBuilder<TEntity> state)
-        {
-            state.WriteWhere("?");
-        }
-
-        public override void VisitRuntimeVariables(RuntimeVariablesExpression node, QueryBuilder<TEntity> state)
-        {
-            base.VisitRuntimeVariables(node, state);
-        }
-
         public override void VisitUnary(UnaryExpression node, QueryBuilder<TEntity> state)
         {
             if (node.NodeType == ExpressionType.Not)
@@ -364,7 +304,7 @@ namespace Starcounter.Linq.Visitors
         public override void VisitTypeBinary(TypeBinaryExpression node, QueryBuilder<TEntity> state)
         {
             state.WriteWhere("(");
-            if (node.Expression is ParameterExpression parm)
+            if (node.Expression is ParameterExpression)
             {
                 state.WriteWhere(state.GetSourceName());
             }

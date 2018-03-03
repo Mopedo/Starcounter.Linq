@@ -209,8 +209,6 @@ namespace Starcounter.Linq.Visitors
 
         public override void VisitLambda(LambdaExpression node, QueryBuilder<TEntity> state)
         {
-            var arg = node.Parameters[0];
-
             WhereVisitor<TEntity>.Instance.Visit(node.Body, state);
         }
     }

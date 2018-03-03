@@ -49,7 +49,7 @@ namespace Starcounter.Linq
             else
             {
                 var queryContextType = typeof(DummyQueryContext<>).MakeGenericType(contextType);
-                object q = Activator.CreateInstance(queryContextType);
+                var q = Activator.CreateInstance(queryContextType);
                 var methodInfo = queryContextType.GetMethod(nameof(DummyQueryContext<object>.GetQuery));
                 if (methodInfo == null)
                 {

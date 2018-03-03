@@ -1,17 +1,17 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>$id$</id>
-    <version>$version$</version>
-    <title>$title$</title>
+    <id>Mopedo.Starcounter.Linq</id>
+    <version>0.1.0</version>
+    <title>Mopedo.Starcounter.Linq</title>
+    <description>Mopedo fork of LINQ for Starcounter</description>
     <authors>Starcounter</authors>
     <owners>Starcounter, untone</owners>
-    <licenseUrl>https://github.com/Starcounter/Starcounter.Linq/blob/master/LICENSE</licenseUrl>
-    <projectUrl>https://github.com/Starcounter/Starcounter.Linq</projectUrl>
+    <licenseUrl>https://github.com/Mopedo/Starcounter.Linq/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/Mopedo/Starcounter.Linq</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <summary>$description$</summary>
-    <description>$description$</description>
-    <releaseNotes>Release 1.0. Fixed some bugs.</releaseNotes>
+    <summary></summary>
+    <releaseNotes></releaseNotes>
     <copyright>Copyright 2018</copyright>
     <tags>Starcounter LINQ</tags>
   </metadata>

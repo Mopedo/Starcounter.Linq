@@ -37,14 +37,14 @@ namespace Starcounter.Linq
         public void Delete(Expression<Func<T, bool>> predicate)
         {
             // This should be optimized, I guess
-            Expression<Action> methodExpression = () => this.Delete(predicate);
+            Expression<Action> methodExpression = () => Delete(predicate);
             var expression = Expression.Lambda<Action<Func<T, bool>>>(methodExpression.Body, Expression.Parameter(typeof(Func<T, bool>)));
             Provider.Execute(expression.Body);
         }
 
         public void DeleteAll()
         {
-            Expression<Action> expression = () => this.DeleteAll();
+            Expression<Action> expression = () => DeleteAll();
             Provider.Execute(expression.Body);
         }
 
